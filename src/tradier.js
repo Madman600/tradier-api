@@ -255,6 +255,12 @@ class Tradier {
     );
   }
 
+  lookupOption(underlying) {
+    return this.get('markets/options/lookup', { underlying }).then(
+      ({ data: { symbols } }) => symbols
+    );
+  }
+
   // region Fundamentals (BETA)
   getCompany(symbols) {
     return this.get(
