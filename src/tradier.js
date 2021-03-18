@@ -367,7 +367,7 @@ class Tradier {
 
   // region Streaming
   createSession() {
-    return this.post('markets/events/session');
+    return this.post('markets/events/session').then(({ data: { stream } }) => stream);
   }
 
   getEvents(sessionid, symbols, filter, linebreak) {
