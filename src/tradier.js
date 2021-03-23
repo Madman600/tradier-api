@@ -217,10 +217,11 @@ class Tradier {
     );
   }
 
-  getOptionExpirations(symbol, includeAllRoots) {
+  getOptionExpirations(symbol, includeAllRoots, strikes) {
     return this.get('markets/options/expirations', {
       symbol,
       includeAllRoots,
+      strikes
     }).then(({ data: { expirations } }) => expirations);
   }
 
