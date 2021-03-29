@@ -202,7 +202,23 @@ class Tradier {
       start,
       end,
       session_filter: sessionFilter,
-    }).then(({ data: { series } }) => series);
+    }).then(
+      ({ data: { series } }) => {
+        //data return as object or array depending on length
+        //https://documentation.tradier.com/brokerage-api/overview/response-format
+
+        if (!series) {
+          return [];
+        }
+
+        if (Array.isArray(series.data)) {
+          return series.data;
+        }
+        else {
+          return [series.data];
+        }
+      }
+    );
   }
 
   getOptionChains(symbol, expiration) {
